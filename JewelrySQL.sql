@@ -6,13 +6,13 @@ DROP TABLE if exists Brands;
 DROP TABLE if exists Jewels;
 
 create table Orders (
-	Order_ID INT auto_increment primary key,
+    Order_ID INT auto_increment primary key,
     N°_Orders varchar(10),
     Orders_adress varchar (20),
     Orders_product varchar(50),
     Orders_number int,
-    
-	Constraint fk_Orders foreign key (N°_Orders) REFERENCES Clients (Client_ID)
+    Orders_name varchar(20),
+    Constraint fk_Orders foreign key (N°_Orders) REFERENCES Clients (Client_ID)
 );
 
 CREATE TABLE Clients ( 
@@ -21,18 +21,18 @@ CREATE TABLE Clients (
     Client_mail varchar(50) NOT NULL,
     Client_phone varchar(20) NOT NULL,
     Client_address varchar(50) NOT NULL,
-	Passwords varchar(20) NOT NULL,
+    Passwords varchar(20) NOT NULL,
     Orders varchar(50) not null,
     CONSTRAINT chk_Clien_age CHECK (Client_age > 13)
 );
 
 CREATE TABLE Jewels (
-	Jewel_ID INT auto_increment primary key,
+    Jewel_ID INT auto_increment primary key,
     Jewel_material varchar (20),
     size int,
     price float NOT NULL,
     Jewel_name varchar (20),
-	Stone varchar (9),
+    Stone varchar (9),
     Category varchar(15)
 );
 
@@ -98,5 +98,3 @@ SELECT Jewel_ID,Jewel_name FROM Jewels where Jewel_material = "biodegradable";
 SELECT Jewel_ID,Jewel_name FROM Jewels where Stone = "yes";
 SELECT Jewel_ID,Jewel_name FROM Jewels where Stone = "no";
 SELECT Jewel_ID,Jewel_name FROM Jewels where 
-
-
