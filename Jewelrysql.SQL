@@ -6,33 +6,34 @@ DROP TABLE if exists Clients;
 DROP TABLE if exists Jewels;
 
 CREATE TABLE Clients ( 
-    Client_ID INT auto_increment primary key,
-    Client_name varchar(20) NOT NULL,
-    Client_mail varchar(50) NOT NULL,
-    Client_phone varchar(20) NOT NULL,
-    Client_address varchar(50) NOT NULL,
-	Passwords varchar(20) NOT NULL,
-    Orders varchar(50) not null
+    	Client_ID INT auto_increment primary key,
+    	Client_name varchar(20) NOT NULL,
+    	Client_mail varchar(50) NOT NULL,
+    	Client_phone varchar(20) NOT NULL,
+    	Client_address varchar(50) NOT NULL,
+	Passwords varchar(20) NOT NULL
 );
 
 CREATE TABLE Jewels (
 	Jewel_ID INT auto_increment primary key,
-    Jewel_material varchar (20),
-    size int,
-    price float NOT NULL,
-    Jewel_name varchar (100),
+    	Jewel_material varchar (20),
+   	size int,
+    	price float NOT NULL,
+   	Jewel_name varchar (100),
 	Stone varchar (9),
-    Jewel_category varchar(25)
+   	Jewel_category varchar(25)
 );
 
 CREATE TABLE Orders (
 	Order_ID INT auto_increment primary key,
 	Orders_product INT, -- varchar(50) NOT NULL,
-    Orders_adress varchar (20) NOT NULL,
-    type_Orders varchar(50) NOT NULL,
-    Orders_payment varchar(50) NOT NULL,
-    Client_ID INT NOT NULL,
-    foreign key(Client_ID) REFERENCES Clients(Client_ID),
+    	Orders_adress varchar (20) NOT NULL,
+    	type_Orders varchar(50) NOT NULL,
+    	Orders_payment varchar(50) NOT NULL,
+	Number_of_product INT NOT NULL,
+	order_date varchar(20) not null,
+   	Client_ID INT NOT NULL,
+    	foreign key(Client_ID) REFERENCES Clients(Client_ID),
 	foreign key (Orders_product) REFERENCES Jewels(Jewel_ID)
 );
 
