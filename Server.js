@@ -3,8 +3,9 @@ const pool = MySQLWorkbench.createPool({
     host: "localhost", user: "root", password: "123Layla", database: "ProjetL3"
 });
 pool.getConnection().then(function(conn){
-    conn.query("SELECT * FROM users").then(function(rows){ console.log(rows) });
-    conn.query("SELECT * FROM cars").then(function(rows){ console.log(rows); process.exit(); });
+    conn.query("SELECT * FROM Clients").then(function(rows){ console.log(rows) });
+    conn.query("SELECT * FROM Jewels").then(function(rows){ console.log(rows); process.exit(); });
+    conn.query("SELECT * FROM Orders").then(function(rows){ console.log(rows) });
 });
 return;
 
