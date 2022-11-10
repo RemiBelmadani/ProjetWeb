@@ -85,7 +85,7 @@ module.exports = {
         }
     },
 
-    /*async getOneCar(carId){ 
+    async getOneCar(carId){ 
         try {
             let conn = await pool.getConnection();
             // sql = "SELECT * FROM cars INNER JOIN brands ON car_brand=brand_id WHERE car_id = "+carId; // SQL INJECTION => !!!!ALWAYS!!!! sanitize user input!
@@ -104,13 +104,12 @@ module.exports = {
             console.log(err);
             throw err; 
         }
-    },*/
-    
-    async delOneJewel(carId){ 
+    },
+    async delOneCar(carId){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "DELETE FROM cars WHERE Jewel_ID = ?";
-            const okPacket = await conn.query(sql, Jewel_ID); // affectedRows, insertId
+            let sql = "DELETE FROM cars WHERE car_id = ?";
+            const okPacket = await conn.query(sql, carId); // affectedRows, insertId
             conn.end();
             console.log(okPacket);
             return okPacket.affectedRows;
@@ -120,10 +119,10 @@ module.exports = {
             throw err; 
         }
     },
-    async addOneCar(Jewel_ID){ 
+    async addOneCar(brandId){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO Jewels (Jewel_ID, Jewel_name) VALUES (NULL, ?) ";
+            let sql = "INSERT INTO cars (car_id, car_brand) VALUES (NULL, ?) ";
             const okPacket = await conn.query(sql, brandId); // affectedRows, insertId
             conn.end();
             console.log(okPacket);
@@ -134,12 +133,12 @@ module.exports = {
             throw err; 
         }
     },
-    async editOneCar(Jewel_ID, Jewel_material, size, price, Jewel_name, Stone, Jewel_category){ 
+    async editOneCar(carId, carBrand, carName, carBaseprice, carIsfancy, carRealprice){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "UPDATE Jewels SET Jewel_material=?, size=?, price=?, Jewel_name=?, Stone=?, Jewel_category = ? WHERE Jewel_ID=? "; // TODO: named parameters? :something
+            let sql = "UPDATE cars SET car_brand=?, car_name=?, car_baseprice=?, car_isFancy=?, car_realPrice=? WHERE car_id=? "; // TODO: named parameters? :something
             const okPacket = await conn.query(sql, 
-                        [Jewel_material, size, price, Jewel_name, Stone, Jewel_category, carId]);
+                        [carBrand, carName, carBaseprice, carIsfancy, carRealprice, carId]);
             conn.end();
             console.log(okPacket);
             return okPacket.affectedRows;
