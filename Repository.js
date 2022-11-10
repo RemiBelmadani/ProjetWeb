@@ -27,7 +27,8 @@ module.exports = {
             throw err; // return false ???
         }
     },
-    async getAllCars(){ 
+
+    /*async getAllCars(){ 
         try {
             let conn = await pool.getConnection();
             let sql = "SELECT * FROM cars INNER JOIN brands ON car_brand=brand_id";
@@ -40,7 +41,50 @@ module.exports = {
             console.log(err);
             throw err; 
         }
+    },*/
+
+        async getOneCategory(Jewel_ID,Jewel_name){ 
+        try {
+            let conn = await pool.getConnection();
+            // sql = "SELECT * FROM cars INNER JOIN brands ON car_brand=brand_id WHERE car_id = "+carId; // SQL INJECTION => !!!!ALWAYS!!!! sanitize user input!
+            // escape input OR prepared statements OR use orm
+            let sql = "SELECT Jewel_ID,Jewel_name FROM Jewels WHERE Jewel_category = ?";
+            const rows = await conn.query(sql, Jewel_ID, Jewel_name);
+            conn.end();
+            console.log("ROWS FETCHED: "+rows.length);
+            if (rows.length == 1) {
+                return rows[0];
+            } else {
+                return false;
+            }
+        }
+        catch (err) {
+            console.log(err);
+            throw err; 
+        }
     },
+
+    async getOneMaterial(Jewel_ID,Jewel_name){ 
+        try {
+            let conn = await pool.getConnection();
+            // sql = "SELECT * FROM cars INNER JOIN brands ON car_brand=brand_id WHERE car_id = "+carId; // SQL INJECTION => !!!!ALWAYS!!!! sanitize user input!
+            // escape input OR prepared statements OR use orm
+            let sql = "SELECT Jewel_ID,Jewel_name FROM Jewels WHERE Jewel_material = ?";
+            const rows = await conn.query(sql, Jewel_ID, Jewel_name);
+            conn.end();
+            console.log("ROWS FETCHED: "+rows.length);
+            if (rows.length == 1) {
+                return rows[0];
+            } else {
+                return false;
+            }
+        }
+        catch (err) {
+            console.log(err);
+            throw err; 
+        }
+    },
+
     async getOneCar(carId){ 
         try {
             let conn = await pool.getConnection();
