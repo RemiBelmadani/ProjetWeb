@@ -27,19 +27,14 @@ CREATE TABLE Jewels (
 
 CREATE TABLE Orders (
 	Order_ID INT auto_increment primary key,
-	Orders_product varchar(50) NOT NULL,
+	Orders_product INT, -- varchar(50) NOT NULL,
     Orders_adress varchar (20) NOT NULL,
     type_Orders varchar(50) NOT NULL,
     Orders_payment varchar(50) NOT NULL,
     Client_ID INT NOT NULL,
-    foreign key(Client_ID) REFERENCES Clients(Client_ID)
-    
-	 -- CONSTRAINT fk_Orders FOREIGN KEY (Orders_product) REFERENCES Clients(Client_ID),
-     -- CONSTRAINT fk_Orderssss foreign key (Orders_product) REFERENCES Jewels(Jewel_ID)
+    foreign key(Client_ID) REFERENCES Clients(Client_ID),
+	foreign key (Orders_product) REFERENCES Jewels(Jewel_ID)
 );
-
--- Error Code: 3780. Referencing column 'Orders_product' and referenced column 'Client_ID' in foreign key constraint 'fk_Orders' are incompatible.
--- Error Code: 3780. Referencing column 'Orders_product' and referenced column 'Jewel_ID' in foreign key constraint 'fk_Order' are incompatible.
 
  INSERT INTO Jewels VALUES
 -- silver necklaces
@@ -100,3 +95,4 @@ SELECT Jewel_ID,Jewel_name FROM Jewels where Stone = "yes";
 SELECT Jewel_ID,Jewel_name FROM Jewels where Stone = "no";
 SELECT Jewel_ID,Jewel_name, Jewel_category FROM Jewels where size = 50;*/
 SELECT Jewel_ID,Jewel_name FROM Jewels where Jewel_category = 'Necklace';
+ 
