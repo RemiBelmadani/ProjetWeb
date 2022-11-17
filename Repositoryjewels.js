@@ -1,3 +1,5 @@
+Repositorybrouillon.js
+
 pool = require("/Users/steveitte/Desktop/L3/Advanced Web programming/Projet web/Code web projet L3/utils/MySQL.js");
 // JS include = relative to CONTROLLERS 
 // VIEW include = relative to VIEWS
@@ -48,8 +50,9 @@ module.exports = {
             throw err; 
         }
     },
-    
-    async delOneJewel(carId){ 
+
+    /*Cannot delete or update a parent row
+    async delOneJewel(Jewel_ID){ 
         try {
             let conn = await pool.getConnection();
             let sql = "DELETE FROM cars WHERE Jewel_ID = ?";
@@ -62,12 +65,13 @@ module.exports = {
             console.log(err);
             throw err; 
         }
-    },
-    async addOnejewel(Jewel_ID){ 
+    },*/
+
+    async addOnejewel(ewel_material,size,price,Jewel_name, stone,Jewel_category,Jewel_ID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO Jewels (Jewel_ID, Jewel_name) VALUES (NULL, ?) ";
-            const okPacket = await conn.query(sql, brandId); // affectedRows, insertId
+            let sql = "INSERT INTO Jewels (Jewel_material,size,price,Jewel_name, stone,Jewel_category,Jewel_ID ) VALUES ("NULL",?,?,"NULL","NULL","NULL",?) ";
+            const okPacket = await conn.query(sql, ewel_material,size,price,Jewel_name, stone,Jewel_category,Jewel_ID); // affectedRows, insertId
             conn.end();
             console.log(okPacket);
             return okPacket.insertId;
@@ -81,8 +85,7 @@ module.exports = {
         try {
             let conn = await pool.getConnection();
             let sql = "UPDATE Jewels SET Jewel_material=?, size=?, price=?, Jewel_name=?, Stone=?, Jewel_category = ? WHERE Jewel_ID=? "; // TODO: named parameters? :something
-            const okPacket = await conn.query(sql, 
-                        [Jewel_material, size, price, Jewel_name, Stone, Jewel_category, carId]);
+            const okPacket = await conn.query(sql,[Jewel_material, size, price, Jewel_name, Stone, Jewel_category, Jewel_ID]);
             conn.end();
             console.log(okPacket);
             return okPacket.affectedRows;
