@@ -115,7 +115,7 @@ INSERT INTO Clients VALUES
 (13,27,'Platinium Earring','23 Rue Mozart','Apple Pay',3,'12/01/2023',11),
 (14,28,'Biodegradable Earring','23 Rue Mozart','Apple Pay',3,'12/01/2023',11);
 
-/*SELECT * FROM Jewels;
+/*
 SELECT Jewel_ID,Jewel_name, Jewel_category FROM Jewels where Jewel_material = "silver";
 SELECT Jewel_ID,Jewel_name FROM Jewels where Jewel_material = "gold";
 SELECT Jewel_ID,Jewel_name FROM Jewels where Jewel_material = "platinium";
@@ -123,15 +123,19 @@ SELECT Jewel_ID,Jewel_name FROM Jewels where Jewel_material = "biodegradable";
 SELECT Jewel_ID,Jewel_name FROM Jewels where Stone = "yes";
 SELECT Jewel_ID,Jewel_name FROM Jewels where Stone = "no";
 SELECT Jewel_ID,Jewel_name, Jewel_category FROM Jewels where size = 50;
-SELECT Jewel_ID,Jewel_name FROM Jewels where Jewel_category = 'Necklace';*/
+SELECT Jewel_ID,Jewel_name FROM Jewels where Jewel_category = 'Necklace';
+INSERT INTO Jewels (Jewel_material,size,price,Jewel_name, stone,Jewel_category,Jewel_ID ) VALUES ("NULL",0,0,"NULL","NULL","NULL",null);
+UPDATE Jewels SET Jewel_material="?", size=15, price=35, Jewel_name="pour", Stone="yes", Jewel_category = "neck" WHERE Jewel_ID=28;
+select * from Jewels;*/
+
 
 /*Select * FROM Orders;
 select * From Orders where Client_ID = 11;
 DELETE FROM Orders WHERE Order_ID = 2;
-Select * FROM Orders;
-INSERT INTO Orders (Orders_product_ID,Name_of_product,Orders_adress,Orders_payment,Number_of_product,order_date,Client_ID) VALUES (NULL,NULL,"NULL","NULL",0,'0/0/0000',11);
-UPDATE Orders SET Orders_product_ID= 17, Name_of_product = 'Silver Bracelet',Orders_adress='1 Rue de Napoléon', Orders_payment='Carte', Number_of_product= 1 , order_date= '1/1/2023',Client_ID= 9 WHERE Order_ID= 15;
 Select * FROM Orders;*/
+INSERT INTO Orders (Orders_product_ID,Name_of_product,Orders_adress,Orders_payment,Number_of_product,order_date,Client_ID,Order_ID) VALUES (NULL,NULL,"NULL","NULL",0,'0/0/0000',9,null);
+UPDATE Orders SET Orders_product_ID= 17, Name_of_product = 'Silver Bracelet',Orders_adress='1 Rue de Napoléon', Orders_payment='Carte', Number_of_product= 1 , order_date= '1/1/2023',Client_ID= 9 WHERE Order_ID= 15;
+Select * FROM Orders;
 
 /*select * From Clients;
 SELECT Client_name,Client_mail,Client_phone, Client_address, Passwords FROM Clients WHERE Client_ID = 6;*/
