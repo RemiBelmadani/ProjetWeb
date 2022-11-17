@@ -86,7 +86,7 @@ CREATE TABLE Orders (
  
 INSERT INTO Clients VALUES
 (1,'Rami','jose.rami@gmail.com','+33712345678','13 rue France','1234a'),
-(2,'Christophe','robert.christophe@gmail.com','1 Avenue des Champs Elysées','+33712345678','1234a'),
+(2,'Christophe','robert.christophe@gmail.com','+33712345678','1 Avenue des Champs Elysées','1234a'),
 (3,'Jean','jose.jean@gmail.com','+33712345678','19 Avenue des Champs Elysées','1234a'),
 (4,'Bob','Jose.bob@gmail.com','+33712345678','13 Rue Mozart','1234a'),
 (5,'wayne','bruce.wayne@gmail.com','+33712345678','17 Rue Mozart','1234a'),
@@ -123,3 +123,5 @@ SELECT Jewel_ID,Jewel_name FROM Jewels where Stone = "no";
 SELECT Jewel_ID,Jewel_name, Jewel_category FROM Jewels where size = 50;
 SELECT Jewel_ID,Jewel_name FROM Jewels where Jewel_category = 'Necklace';*/
 -- Select * FROM Orders;
+
+-- select * From Clients;
