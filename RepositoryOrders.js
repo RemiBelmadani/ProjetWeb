@@ -88,7 +88,7 @@ module.exports = {
     async addOneOrder(Order_ID, Orders_product_ID, Orders_adress,Orders_payment,Number_of_product,order_date,Client_ID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO Orders (Orders_product_ID,Name_of_product,Orders_adress,Orders_payment,Number_of_product,order_date,Client_ID) VALUES (?,?,"NULL","NULL",?,'0/0/0000',?);";
+            let sql = "INSERT INTO Orders (Orders_product_ID,Name_of_product,Orders_adress,Orders_payment,Number_of_product,order_date,Client_ID,Order_ID) VALUES (?,?,"NULL","NULL",?,'0/0/0000',?,?);";
             const okPacket = await conn.query(sql, Order_ID, Orders_product_ID, Orders_adress,Orders_payment,Number_of_product,order_date,Client_ID); // affectedRows, insertId
             conn.end();
             console.log(okPacket);
