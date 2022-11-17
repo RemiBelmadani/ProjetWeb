@@ -7,11 +7,12 @@ DROP TABLE if exists Jewels;
 
 CREATE TABLE Clients ( 
 	Client_ID INT auto_increment primary key,
+   -- Client_created datetime,
 	Client_name varchar(20) NOT NULL,
 	Client_mail varchar(50) NOT NULL,
 	Client_phone varchar(40) NOT NULL,
 	Client_address varchar(50) NOT NULL,
-	Passwords varchar(20) NOT NULL
+	Passwords varchar(200) NOT NULL
 );
 
 CREATE TABLE Jewels (
@@ -84,6 +85,8 @@ CREATE TABLE Orders (
 (28,'biodegradable',0,100, 'Biodegradable Earring','yes','Earring');
  
 INSERT INTO Clients VALUES
+
+-- (1, now(), 'bill', 'bill@bill.bill', "+33606060",'USER', sha2(concat(now(), 'billpass'), 224) );
 (1,'Rami','jose.rami@gmail.com','+33712345678','13 rue France','1234a'),
 (2,'Christophe','robert.christophe@gmail.com','+33712345678','1 Avenue des Champs Elysées','1234a'),
 (3,'Jean','jose.jean@gmail.com','+33712345678','19 Avenue des Champs Elysées','1234a'),
@@ -121,6 +124,14 @@ SELECT Jewel_ID,Jewel_name FROM Jewels where Stone = "yes";
 SELECT Jewel_ID,Jewel_name FROM Jewels where Stone = "no";
 SELECT Jewel_ID,Jewel_name, Jewel_category FROM Jewels where size = 50;
 SELECT Jewel_ID,Jewel_name FROM Jewels where Jewel_category = 'Necklace';*/
--- Select * FROM Orders;
 
--- select * From Clients;
+/*Select * FROM Orders;
+select * From Orders where Client_ID = 11;
+DELETE FROM Orders WHERE Order_ID = 2;
+Select * FROM Orders;
+INSERT INTO Orders (Orders_product_ID,Name_of_product,Orders_adress,Orders_payment,Number_of_product,order_date,Client_ID) VALUES (NULL,NULL,"NULL","NULL",0,'0/0/0000',11);
+UPDATE Orders SET Orders_product_ID= 17, Name_of_product = 'Silver Bracelet',Orders_adress='1 Rue de Napoléon', Orders_payment='Carte', Number_of_product= 1 , order_date= '1/1/2023',Client_ID= 9 WHERE Order_ID= 15;
+Select * FROM Orders;*/
+
+/*select * From Clients;
+SELECT Client_name,Client_mail,Client_phone, Client_address, Passwords FROM Clients WHERE Client_ID = 6;*/
