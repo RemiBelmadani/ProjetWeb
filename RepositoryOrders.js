@@ -1,7 +1,6 @@
 RepositoryOrders.js
 
-// utils/cars.repository.js
-pool = require("../utils/db.js");
+pool = require("/Users/steveitte/Desktop/L3/Advanced Web programming/Projet web/Code web projet L3/utils/MySQL.js");
 // JS include = relative to CONTROLLERS 
 // VIEW include = relative to VIEWS
 module.exports = {
