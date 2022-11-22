@@ -1,10 +1,11 @@
 RepositoryOrders.js
 
+// utils/cars.repository.js
 pool = require("/Users/steveitte/Desktop/L3/Advanced Web programming/Projet web/Code web projet L3/utils/MySQL.js");
 // JS include = relative to CONTROLLERS 
 // VIEW include = relative to VIEWS
 module.exports = {
-    getBlankCar(){ // defines the entity model
+    getBlankOrders(){ // defines the entity model
         return {
             "Order_ID": 0,
             "Orders_product_ID": 0,
@@ -69,8 +70,8 @@ module.exports = {
             console.log(err);
             throw err; 
         }
-    },
 
+    },
     async delOneOrder(Order_ID){ 
         try {
             let conn = await pool.getConnection();
@@ -88,7 +89,7 @@ module.exports = {
     async addOneOrder(Order_ID, Orders_product_ID, Orders_adress,Orders_payment,Number_of_product,order_date,Client_ID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO Orders (Orders_product_ID,Name_of_product,Orders_adress,Orders_payment,Number_of_product,order_date,Client_ID,Order_ID) VALUES (?,?,"NULL","NULL",?,'0/0/0000',?,?);";
+            let sql = "INSERT INTO Orders (Orders_product_ID,Name_of_product,Orders_adress,Orders_payment,Number_of_product,order_date,Client_ID) VALUES (?,?,"NULL","NULL",?,'0/0/0000',?);";
             const okPacket = await conn.query(sql, Order_ID, Orders_product_ID, Orders_adress,Orders_payment,Number_of_product,order_date,Client_ID); // affectedRows, insertId
             conn.end();
             console.log(okPacket);
