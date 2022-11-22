@@ -1,9 +1,7 @@
-RepositoryClients.js 
-
 pool = require("/Users/steveitte/Desktop/L3/Advanced Web programming/Projet web/Code web projet L3/utils/MySQL.js");
 
 module.exports = {
-  async getOneClient(Client_name) {
+  async getOneUser(Client_name) {
     try {
       let conn = await pool.getConnection();
       let sql = "SELECT Users_ID, Users_name,Users_mail,Users_phone,Users_address,Users_role, FROM Users WHERE Users_ID = ?,"; // must leave out the password+hash
