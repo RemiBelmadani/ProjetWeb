@@ -1,6 +1,4 @@
-RepositoryOrders.js
 
-// utils/cars.repository.js
 pool = require("/Users/steveitte/Desktop/L3/Advanced Web programming/Projet web/Code web projet L3/utils/MySQL.js");
 // JS include = relative to CONTROLLERS 
 // VIEW include = relative to VIEWS
@@ -14,9 +12,9 @@ module.exports = {
             "Orders_payment": "XXXXX",
             "Number_of_product": 0
             "order_date":"XX/XX/XXXX",
-            "Client_ID":0,
-            foreign key(Client_ID) REFERENCES Clients(Client_ID),
-			foreign key (Orders_product) REFERENCES Jewels(Jewel_ID)
+            "Users_ID":0,
+            foreign key(Users_ID) REFERENCES Users(Users_ID),
+	    foreign key (Orders_product) REFERENCES Jewels(Jewel_ID)
         };
     },
     async getAllOrders(){ // TODO? move to brands.repository.js
@@ -53,11 +51,11 @@ module.exports = {
         }
     },
 
-       async getOneClientOrders(Client_ID){ 
+       async getOneUsersOrders(Users_ID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "SELECT * FROM Orders  WHERE Client_ID='?'";
-            const rows = await conn.query(sql, Client_ID);
+            let sql = "SELECT * FROM Orders  WHERE Users_ID='?'";
+            const rows = await conn.query(sql, Users_ID);
             conn.end();
             console.log("ROWS FETCHED: "+rows.length);
             if (rows.length == 1) {
@@ -86,11 +84,11 @@ module.exports = {
             throw err; 
         }
     },
-    async addOneOrder(Order_ID, Orders_product_ID, Orders_adress,Orders_payment,Number_of_product,order_date,Client_ID){ 
+    async addOneOrder(Order_ID, Orders_product_ID, Orders_adress,Orders_payment,Number_of_product,order_date,Users_ID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO Orders (Orders_product_ID,Name_of_product,Orders_adress,Orders_payment,Number_of_product,order_date,Client_ID) VALUES (?,?,"NULL","NULL",?,'0/0/0000',?);";
-            const okPacket = await conn.query(sql, Order_ID, Orders_product_ID, Orders_adress,Orders_payment,Number_of_product,order_date,Client_ID); // affectedRows, insertId
+            let sql = "INSERT INTO Orders (Orders_product_ID,Name_of_product,Orders_adress,Orders_payment,Number_of_product,order_date,Users_ID) VALUES (?,?,"NULL","NULL",?,'0/0/0000',?);";
+            const okPacket = await conn.query(sql, Order_ID, Orders_product_ID, Orders_adress,Orders_payment,Number_of_product,order_date,Users_ID); // affectedRows, insertId
             conn.end();
             console.log(okPacket);
             return okPacket.insertId;
@@ -100,11 +98,11 @@ module.exports = {
             throw err; 
         }
     },
-    async editOneCar(Order_ID, Orders_product_ID, Orders_adress,Orders_payment,Number_of_product,order_date,Client_ID){ 
+    async editOneCar(Order_ID, Orders_product_ID, Orders_adress,Orders_payment,Number_of_product,order_date,Users_ID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "UPDATE Orders SET Orders_product_ID= ?, Name_of_product = '?',Orders_adress='?', Orders_payment='?', Number_of_product= ?, order_date= '?',Client_ID= ? WHERE Order_ID= ?;"; // TODO: named parameters? :something
-            const okPacket = await conn.query(sql,[Orders_product_ID, Orders_adress,Orders_payment,Number_of_product,order_date,Client_ID,Order_ID]);
+            let sql = "UPDATE Orders SET Orders_product_ID= ?, Name_of_product = '?',Orders_adress='?', Orders_payment='?', Number_of_product= ?, order_date= '?',Users_ID= ? WHERE Order_ID= ?;"; // TODO: named parameters? :something
+            const okPacket = await conn.query(sql,[Orders_product_ID, Orders_adress,Orders_payment,Number_of_product,order_date,Users_ID,Order_ID]);
             conn.end();
             console.log(okPacket);
             return okPacket.affectedRows;
