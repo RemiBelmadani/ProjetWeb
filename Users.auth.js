@@ -1,24 +1,26 @@
+Client.auth.js
+
 const passport = require("passport");
-const usersRepo = require("/Users/steveitte/Desktop/L3/Advanced Web programming/Projet web/Code web projet L3/utils/RepositoryClients/js");
+const UsersRepo = require("/Users/steveitte/Desktop/L3/Advanced Web programming/Projet web/Code web projet L3/utils/Users_Repository.js");
 
 module.exports = {
   initialization(app) {
     app.use(passport.initialize());
     app.use(passport.session());
-    passport.serializeUser(function (user, done) {
-      done(null, user.user_name);
+    passport.serializeUser(function (Users, done) {
+      done(null, Users.Users_name);
     });
-    passport.deserializeUser(async function (username, done) {
-      let user = await usersRepo.getOneUser(username);
-      done(null, user);
+    passport.deserializeUser(async function (Users_name, done) {
+      let User = await UsersRepo.getOneUser(Users_name);
+      done(null, Users);
     });
   },
 
-  checkAuthentication(role) {
+checkAuthentication(Users_role) {
     return function (request, response, next) {
       if (request.isAuthenticated()) {
-        if (role) {
-          if (role === request.user.user_role) { 
+        if (Users_role) {
+          if (Users_role === request.Users.Users_role) { 
             return next();
           } else {
             return response.end("401 Unautorized (bad user level)"); // TODO: Hierarchy
