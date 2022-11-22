@@ -1,12 +1,8 @@
-Users.controllers.js
-
-// controllers/auth.route.js
 const express = require('express');
 const router = express.Router();
 const auth = require("/Userss/steveitte/Desktop/L3/Advanced Web programming/Projet web/Code web projet L3/utils/Userss.auth.js");
 const UsersRepo = require("/Userss/steveitte/Desktop/L3/Advanced Web programming/Projet web/Code web projet L3/utils/Usersss_Repository.js");
 
-// http://localhost:9000/auth
 router.get('/', (req, res) => res.render('auth_view', { extraContent: "" }) );
 router.get("/Users", auth.checkAuthentication("Users"), UsersAction);
 router.get("/admin", auth.checkAuthentication("ADMIN"), UsersAction);
@@ -16,7 +12,7 @@ router.get("/logout", logoutAction);
 
 async function UsersAction(request, response) {
   let UsersData = await UsersRepo.getOneUser(request.Users.Users_name);
-  let UsersJson = JSON.stringify(UsersData); // if  UsersData.Users_role ...
+  let UsersJson = JSON.stringify(UsersData);
   response.render("auth_view", { "extraContent": UsersJson });
 }
 
@@ -48,7 +44,6 @@ async function loginPostAction(request, response) {
     });
   } else {
     response.send("Invalid credentials provided");
-    // TODO redirect/normal error message
   }
 }
 
