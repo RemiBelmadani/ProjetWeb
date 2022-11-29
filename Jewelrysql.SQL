@@ -2,17 +2,18 @@ CREATE DATABASE if not exists Jewelry;
 USE Jewelry;
 
 DROP TABLE if exists Orders;
-DROP TABLE if exists Clients;
+DROP TABLE if exists Users;
 DROP TABLE if exists Jewels;
 
-CREATE TABLE Clients ( 
-	Client_ID INT auto_increment primary key,
-   -- Client_created datetime,
-	Client_name varchar(20) NOT NULL,
-	Client_mail varchar(50) NOT NULL,
-	Client_phone varchar(40) NOT NULL,
-	Client_address varchar(50) NOT NULL,
-	Passwords varchar(200) NOT NULL
+CREATE TABLE Users ( 
+	Users_ID INT auto_increment primary key,
+    Users_created datetime,
+	Users_name varchar(20) NOT NULL,
+	Users_mail varchar(50) NOT NULL,
+	Users_phone varchar(40) NOT NULL,
+	Users_address varchar(50) NOT NULL,
+    Users_role varchar(20) NOT NULL,
+	Users_passwords varchar(200) NOT NULL
 );
 
 CREATE TABLE Jewels (
@@ -84,20 +85,21 @@ CREATE TABLE Orders (
 -- biodegradable earrings
 (28,'biodegradable',0,100, 'Biodegradable Earring','yes','Earring');
  
-INSERT INTO Clients VALUES
+INSERT INTO Users VALUES
 
--- (1, now(), 'bill', 'bill@bill.bill', "+33606060",'USER', sha2(concat(now(), 'billpass'), 224) );
-(1,'Rami','jose.rami@gmail.com','+33712345678','13 rue France','1234a'),
-(2,'Christophe','robert.christophe@gmail.com','+33712345678','1 Avenue des Champs Elysées','1234a'),
-(3,'Jean','jose.jean@gmail.com','+33712345678','19 Avenue des Champs Elysées','1234a'),
-(4,'Bob','Jose.bob@gmail.com','+33712345678','13 Rue Mozart','1234a'),
-(5,'wayne','bruce.wayne@gmail.com','+33712345678','17 Rue Mozart','1234a'),
-(6,'kent','clark.kent@gmail.com','+33712345678','13 rue France','1234a'),
-(7,'parker','peter.parker@gmail.com','+33712345678','35 rue de la Paix','1234a'),
-(8,'stark','tony.stark@gmail.com','+33712345678','27 rue France','1234a'),
-(9,'goku','son.goku@gmail.com','+33712345678','18 rue de la Paix','1234a'),
-(10,'vegeta','vegeta@gmail.com','+33712345678','115 rue de la Liberté','1234a'),
-(11,'bulma','bulma@gmail.com','+33712345678','23 Rue Mozart','1234a');
+(1,now(),'Rami','jose.rami@gmail.com','+33712345678','13 rue France','Client',sha2(concat(now(), 'Ramipass'), 224) ),
+(2,now(),'Christophe','robert.christophe@gmail.com','+33712345678','1 Avenue des Champs Elysées','Client',sha2(concat(now(), 'Christophepass'), 224) ),
+(3,now(),'Jean','jose.jean@gmail.com','+33712345678','19 Avenue des Champs Elysées','Client',sha2(concat(now(), 'Jeanpass'), 224) ),
+(4,now(),'Bob','Jose.bob@gmail.com','+33712345678','13 Rue Mozart','Client',sha2(concat(now(), 'Bobpass'), 224) ),
+(5,now(),'Wayne','bruce.wayne@gmail.com','+33712345678','17 Rue Mozart','Client',sha2(concat(now(), 'Waynepass'), 224) ),
+(6,now(),'Kent','clark.kent@gmail.com','+33712345678','13 rue France','Client',sha2(concat(now(), 'Kentpass'), 224) ),
+(7,now(),'Parker','peter.parker@gmail.com','+33712345678','35 rue de la Paix','Client',sha2(concat(now(), 'Parkerpass'), 224) ),
+(8,now(),'Stark','tony.stark@gmail.com','+33712345678','27 rue France','Client',sha2(concat(now(), 'Starkpass'), 224) ),
+(9,now(),'Goku','son.goku@gmail.com','+33712345678','18 rue de la Paix','Client',sha2(concat(now(), 'Gokupass'), 224) ),
+(10,now(),'Vegeta','vegeta@gmail.com','+33712345678','115 rue de la Liberté','Client',sha2(concat(now(), 'Vegetapass'), 224) ),
+(11,now(),'Bulma','bulma@gmail.com','+33712345678','23 Rue Mozart','Client',sha2(concat(now(), 'Bulmapass'), 224) ),
+(12,now(),'ADMIN','THEADMIN@gmail.com','+33712345678','No @','Admin',sha2(concat(now(), 'ADMINpass'), 224) );
+
 
  INSERT INTO Orders VALUES
 (1,1,'Silver Necklace','Avenue de la Liberté','Carte',1,'23/12/2022',6),
@@ -132,10 +134,10 @@ select * from Jewels;*/
 /*Select * FROM Orders;
 select * From Orders where Client_ID = 11;
 DELETE FROM Orders WHERE Order_ID = 2;
-Select * FROM Orders;*/
+Select * FROM Orders;
 INSERT INTO Orders (Orders_product_ID,Name_of_product,Orders_adress,Orders_payment,Number_of_product,order_date,Client_ID,Order_ID) VALUES (NULL,NULL,"NULL","NULL",0,'0/0/0000',9,null);
 UPDATE Orders SET Orders_product_ID= 17, Name_of_product = 'Silver Bracelet',Orders_adress='1 Rue de Napoléon', Orders_payment='Carte', Number_of_product= 1 , order_date= '1/1/2023',Client_ID= 9 WHERE Order_ID= 15;
-Select * FROM Orders;
+Select * FROM Orders;*/
 
-/*select * From Clients;
-SELECT Client_name,Client_mail,Client_phone, Client_address, Passwords FROM Clients WHERE Client_ID = 6;*/
+-- select * From Users;
+-- SELECT * FROM Users WHERE Users_ID = 5;
