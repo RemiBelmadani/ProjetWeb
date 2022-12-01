@@ -130,8 +130,11 @@ SELECT Jewel_ID,Jewel_name FROM Jewels where Jewel_category = 'Necklace';
 select * from Jewels;
 INSERT INTO Jewels (Jewel_material,size,price,Jewel_name, stone,Jewel_category,Stock,Jewel_ID ) VALUES ("NULL",0,0,"NULL","NULL","NULL",0,0);
 UPDATE Jewels SET Jewel_material="Diamond", size=15, price=35, Jewel_name="gros cadeaux", Stone="yes", Jewel_category = "Neck",Stock = 5 WHERE Jewel_ID=29;
-Select * from Jewels;*/
+DELETE FROM Jewels WHERE Jewel_ID = 28; */
 
+UPDATE Jewels SET Stock = Stock - 1 WHERE Jewel_ID=28;
+
+Select * FROM Jewels;
 
 
 /*Select * FROM Orders;
@@ -140,7 +143,7 @@ DELETE FROM Orders WHERE Order_ID = 2;
 Select * FROM Orders;
 INSERT INTO Orders (Orders_product_ID,Name_of_product,Orders_adress,Orders_payment,Number_of_product,order_date,Client_ID,Order_ID) VALUES (NULL,NULL,"NULL","NULL",0,'0/0/0000',9,null);
 UPDATE Orders SET Orders_product_ID= 17, Name_of_product = 'Silver Bracelet',Orders_adress='1 Rue de Napoléon', Orders_payment='Carte', Number_of_product= 1 , order_date= '1/1/2023',Client_ID= 9 WHERE Order_ID= 15;
-Select * FROM Orders;*/
+*/
 
 -- select * From Users;
 -- SELECT * FROM Users WHERE Users_ID = 5;
