@@ -49,12 +49,11 @@ module.exports = {
         }
     },
 
-    /*Cannot delete or update a parent row
     async delOneJewel(Jewel_ID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "DELETE FROM cars WHERE Jewel_ID = ?";
-            const okPacket = await conn.query(sql, Jewel_ID); // affectedRows, insertId
+            let sql = "UPDATE Jewels SET Jewel_material="Indisponibe", size=NULL, price=NULL, Jewel_name="Victime de son succés", Stone="Indisponible", Jewel_category = "Indisponible",Stock =0 WHERE Jewel_ID=?";
+            const okPacket = await conn.query(sql,Jewel_material,size,price,Jewel_name, stone,Jewel_category,Stock,Jewel_ID); //
             conn.end();
             console.log(okPacket);
             return okPacket.affectedRows;
@@ -63,13 +62,13 @@ module.exports = {
             console.log(err);
             throw err; 
         }
-    },*/
+    },
 
     async addOnejewel(Jewel_material,size,price,Jewel_name, stone,Jewel_category,Stock,Jewel_ID){ 
         try {
             let conn = await pool.getConnection();
             let sql = "INSERT INTO Jewels (Jewel_material,size,price,Jewel_name, stone,Jewel_category,Stock,Jewel_ID ) VALUES ("NULL",0,0,"NULL","NULL","NULL",0,0);";
-            const okPacket = await conn.query(sql,[Jewel_material,size,price,Jewel_name, stone,Jewel_category,Jewel_ID]); // affectedRows, insertId
+            const okPacket = await conn.query(sql,[Jewel_material,size,price,Jewel_name, stone,Jewel_category,Stock,Jewel_ID]); // affectedRows, insertId
             conn.end();
             console.log(okPacket);
             return okPacket.insertId;
