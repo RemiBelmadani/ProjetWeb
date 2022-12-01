@@ -23,7 +23,8 @@ CREATE TABLE Jewels (
 	price float NOT NULL,
    	Jewel_name varchar (100),
 	Stone varchar (9),
-   	Jewel_category varchar(25)
+   	Jewel_category varchar(25),
+    Stock INT
 );
 
 CREATE TABLE Orders (
@@ -34,56 +35,56 @@ CREATE TABLE Orders (
 	Orders_payment varchar(50) NOT NULL,
 	Number_of_product INT NOT NULL,
 	order_date varchar(20) not null,
-   	Client_ID INT NOT NULL,
-	foreign key(Client_ID) REFERENCES Clients(Client_ID),
+   	Users_ID INT NOT NULL,
+	foreign key(Users_ID) REFERENCES Users(Users_ID),
 	foreign key (Orders_product_ID) REFERENCES Jewels(Jewel_ID)
 );
 
  INSERT INTO Jewels VALUES
 -- silver necklaces
-(1,'silver',50,50, 'Silver Necklace','no','Necklace'),
-(2,'silver',52,50, 'Silver Necklace','no','Necklace'),
+(1,'silver',50,50, 'Silver Necklace','no','Necklace',5),
+(2,'silver',52,50, 'Silver Necklace','no','Necklace',5),
 -- gold necklaces
-(3,'gold',50,60, 'Gold Necklace','no','Necklace'),
-(4,'gold',52,60, 'Gold Necklace','no','Necklace'),
+(3,'gold',50,60, 'Gold Necklace','no','Necklace',5),
+(4,'gold',52,60, 'Gold Necklace','no','Necklace',5),
 -- platinium necklaces
-(5,'platinium',50,80, 'Platinium Necklace','yes','Necklace'),
-(6,'platinium',52,80, 'Platinium Necklace','yes','Necklace'),
+(5,'platinium',50,80, 'Platinium Necklace','yes','Necklace',5),
+(6,'platinium',52,80, 'Platinium Necklace','yes','Necklace',5),
 -- biodegradable necklaces
-(7,'biodegradable',50,1000, 'Biodegradable Necklace','yes','Necklace'),
-(8,'biodegradable',52,1000, 'Biodegradable Necklace','yes','Necklace'),
+(7,'biodegradable',50,1000, 'Biodegradable Necklace','yes','Necklace',5),
+(8,'biodegradable',52,1000, 'Biodegradable Necklace','yes','Necklace',5),
 -- silver rings
-(9,'silver',50,50, 'Silver Ring','no','Ring'),
-(10,'silver',52,50, 'Silver Ring','no','Ring'),
+(9,'silver',50,50, 'Silver Ring','no','Ring',5),
+(10,'silver',52,50, 'Silver Ring','no','Ring',5),
 -- gold rings
-(11,'gold',50,60, 'Gold Ring','no','Ring'),
-(12,'gold',52,60, 'Gold Ring','no','Ring'),
+(11,'gold',50,60, 'Gold Ring','no','Ring',5),
+(12,'gold',52,60, 'Gold Ring','no','Ring',5),
 -- platinium rings
-(13,'platinium',50,80, 'Platinium Ring','yes','Ring'),
-(14,'platinium',52,80, 'Platinium Ring','yes','Ring'),
+(13,'platinium',50,80, 'Platinium Ring','yes','Ring',5),
+(14,'platinium',52,80, 'Platinium Ring','yes','Ring',5),
 -- biodegradable rings 
-(15,'biodegradable',50,2000, 'Biodegradable Ring','yes','Ring'),
-(16,'biodegradable',52,2000, 'Biodegradable Ring','yes','Ring'),
+(15,'biodegradable',50,2000, 'Biodegradable Ring','yes','Ring',5),
+(16,'biodegradable',52,2000, 'Biodegradable Ring','yes','Ring',5),
 -- silver bracelets
-(17,'silver',50,50, 'Silver Bracelet','no','Bracelet'),
-(18,'silver',52,50, 'Silver Bracelet','no','Bracelet'),
+(17,'silver',50,50, 'Silver Bracelet','no','Bracelet',5),
+(18,'silver',52,50, 'Silver Bracelet','no','Bracelet',5),
 -- gold bracelets
-(19,'gold',50,60, 'Gold Bracelet','no','Bracelet'),
-(20,'gold',52,60, 'Gold Bracelet','no','Bracelet'),
+(19,'gold',50,60, 'Gold Bracelet','no','Bracelet',5),
+(20,'gold',52,60, 'Gold Bracelet','no','Bracelet',5),
 -- platinium bracelets
-(21,'platinium',50,80, 'Platinium Bracelet','yes','Bracelet'),
-(22,'platinium',52,80, 'Platinium Bracelet','yes','Bracelet'),
+(21,'platinium',50,80, 'Platinium Bracelet','yes','Bracelet',5),
+(22,'platinium',52,80, 'Platinium Bracelet','yes','Bracelet',5),
 -- biodegradable bracelets
-(23,'biodegradable',50,3000, 'Biodegradable Bracelet','yes','Bracelet'),
-(24,'biodegradable',52,3000, 'Biodegradable Bracelet','yes','Bracelet'),
+(23,'biodegradable',50,3000, 'Biodegradable Bracelet','yes','Bracelet',5),
+(24,'biodegradable',52,3000, 'Biodegradable Bracelet','yes','Bracelet',5),
 -- silver earrings
-(25,'silver',0,50, 'Silver Earring','no','Earring'),
+(25,'silver',0,50, 'Silver Earring','no','Earring',5),
 -- gold earrings
-(26,'gold',0,60, 'Gold Earring','no','Earring'),
+(26,'gold',0,60, 'Gold Earring','no','Earring',5),
 -- platinium earrings
-(27,'platinium',0,80, 'Platinium Earring','yes','Earring'),
+(27,'platinium',0,80, 'Platinium Earring','yes','Earring',5),
 -- biodegradable earrings
-(28,'biodegradable',0,100, 'Biodegradable Earring','yes','Earring');
+(28,'biodegradable',0,100, 'Biodegradable Earring','yes','Earring',5);
  
 INSERT INTO Users VALUES
 
@@ -126,9 +127,11 @@ SELECT Jewel_ID,Jewel_name FROM Jewels where Stone = "yes";
 SELECT Jewel_ID,Jewel_name FROM Jewels where Stone = "no";
 SELECT Jewel_ID,Jewel_name, Jewel_category FROM Jewels where size = 50;
 SELECT Jewel_ID,Jewel_name FROM Jewels where Jewel_category = 'Necklace';
-INSERT INTO Jewels (Jewel_material,size,price,Jewel_name, stone,Jewel_category,Jewel_ID ) VALUES ("NULL",0,0,"NULL","NULL","NULL",null);
-UPDATE Jewels SET Jewel_material="?", size=15, price=35, Jewel_name="pour", Stone="yes", Jewel_category = "neck" WHERE Jewel_ID=28;
-select * from Jewels;*/
+select * from Jewels;
+INSERT INTO Jewels (Jewel_material,size,price,Jewel_name, stone,Jewel_category,Stock,Jewel_ID ) VALUES ("NULL",0,0,"NULL","NULL","NULL",0,0);
+UPDATE Jewels SET Jewel_material="Diamond", size=15, price=35, Jewel_name="gros cadeaux", Stone="yes", Jewel_category = "Neck",Stock = 5 WHERE Jewel_ID=29;
+Select * from Jewels;*/
+
 
 
 /*Select * FROM Orders;
