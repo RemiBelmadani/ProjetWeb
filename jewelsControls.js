@@ -18,7 +18,7 @@ async function JewelListAction(request, response) {
     // console.log(cars);
     var flashMessage = request.session.flashMessage;
     request.session.flashMessage = "";
-    response.render("Jewels_list", { "Jewels": Jewel_name, "flashMessage": flashMessage });
+    response.render("Jewels_list", { "Jewels": Jewels, "flashMessage": flashMessage });
 }
 async function JewelShowAction(request, response) {
     // response.send("SHOW ACTION");
@@ -50,7 +50,7 @@ async function JewelUpdateAction(request, response) {
     if (Jewel_ID==="0") Jewel_ID = await JewelRepo.addOneJewel(request.body.Jewel_name);
     // var isFancy = request.body.car_isFancy === undefined ? 0 : 1; 
     var numRows = await JewelRepo.editOneJewel(
-    	Jewel_ID, 
+        Jewel_ID, 
         request.body.Jewel_material, 
         request.body.size, 
         request.body.price, 
