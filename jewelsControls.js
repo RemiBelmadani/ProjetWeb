@@ -30,10 +30,10 @@ async function JewelEditAction(request, response) {
     var AllJewels = await JewelRepo.getAllJewels();
     var Jewel_ID = request.params.Jewel_ID;
     if (Jewel_ID!=="0")
-        var Jewels = await JewelRepo.getOneJewel(Jewel_ID);
+        var jewels = await JewelRepo.getOneJewel(Jewel_ID);
     else
-        var Jewels = JewelRepo.getBlankJewels();
-    response.render("Jewel_edit", { "Jewel": Jewel_ID, "Name": Jewel_name });
+        var jewels = JewelRepo.getBlankJewels();
+    response.render("Jewel_edit", { "Jewel": jewels, "Name": AllJewels });
 }
 /*
 async function JewelDelAction(request, response) {
@@ -56,7 +56,8 @@ async function JewelUpdateAction(request, response) {
         request.body.price, 
         request.body.Jewel_name,
         request.body.Stone,
-        request.body.Jewel_category);
+        request.body.Jewel_category,
+        request.body.Stock);
     request.session.flashMessage = "ROWS UPDATED: "+numRows;
     response.redirect("/Jewels/list");
 }
