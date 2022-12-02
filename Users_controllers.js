@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const auth = require("/Userss/steveitte/Desktop/L3/Advanced Web programming/Projet web/Code web projet L3/utils/Userss.auth.js");
-const UsersRepo = require("/Userss/steveitte/Desktop/L3/Advanced Web programming/Projet web/Code web projet L3/utils/Usersss_Repository.js");
+const auth = require("../utils/UsersAuth.js");
+const UsersRepo = require("../utils/userRepository.js");
 
 router.get('/', (req, res) => res.render('auth_view', { extraContent: "" }) );
 router.get("/Users", auth.checkAuthentication("Users"), UsersAction);
