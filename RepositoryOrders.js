@@ -1,5 +1,4 @@
-
-pool = require("/Users/steveitte/Desktop/L3/Advanced Web programming/Projet web/Code web projet L3/utils/MySQL.js");
+pool = require("../utils/MySQL.js");
 // JS include = relative to CONTROLLERS 
 // VIEW include = relative to VIEWS
 module.exports = {
@@ -10,11 +9,9 @@ module.exports = {
             "Name_of_product": "XXXXX",
             "Orders_adress": "XXXX",
             "Orders_payment": "XXXXX",
-            "Number_of_product": 0
+            "Number_of_product": 0,
             "order_date":"XX/XX/XXXX",
             "Users_ID":0,
-            foreign key(Users_ID) REFERENCES Users(Users_ID),
-	    foreign key (Orders_product) REFERENCES Jewels(Jewel_ID)
         };
     },
     async getAllOrders(){ // TODO? move to brands.repository.js
@@ -87,7 +84,7 @@ module.exports = {
     async addOneOrder(Order_ID, Orders_product_ID, Orders_adress,Orders_payment,Number_of_product,order_date,Users_ID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO Orders (Orders_product_ID,Name_of_product,Orders_adress,Orders_payment,Number_of_product,order_date,Users_ID) VALUES (?,?,"NULL","NULL",?,'0/0/0000',?);";
+            let sql = "INSERT INTO Orders (Orders_product_ID,Name_of_product,Orders_adress,Orders_payment,Number_of_product,order_date,Users_ID) VALUES (?,?,NULL,,NULL,?,'0/0/0000',?)";
             const okPacket = await conn.query(sql, Order_ID, Orders_product_ID, Orders_adress,Orders_payment,Number_of_product,order_date,Users_ID); // affectedRows, insertId
             conn.end();
             console.log(okPacket);
