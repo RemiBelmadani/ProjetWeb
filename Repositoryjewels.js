@@ -1,4 +1,3 @@
-
 pool = require("../utils/MySQL.js");
 // JS include = relative to CONTROLLERS 
 // VIEW include = relative to VIEWS
@@ -11,7 +10,8 @@ module.exports = {
             "price": 0,
             "Jewel_name": "XXXX",
             "Stone": "XXXX",
-            "Jewel_category": "XXXX"
+            "Jewel_category": "XXXX",
+            "Stock" : 0
         };
     },
     async getAllJewels(){ // TODO? move to brands.repository.js
@@ -66,11 +66,11 @@ module.exports = {
         }
     },*/
 
-    async addOnejewel(Jewel_material,size,price,Jewel_name, stone,Jewel_category,Jewel_ID){ 
+    async addOnejewel(Jewel_material,size,price,Jewel_name, stone,Jewel_category,Stock,Jewel_ID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO Jewels (Jewel_material,size,price,Jewel_name, stone,Jewel_category,Jewel_ID ) VALUES (NULL,?,?,NULL,NULL,NULL,?)";
-            const okPacket = await conn.query(sql,Jewel_material,size,price,Jewel_name, stone,Jewel_category,Jewel_ID); // affectedRows, insertId
+            let sql = "INSERT INTO Jewels (Jewel_material,size,price,Jewel_name, stone,Jewel_category,Stock,Jewel_ID ) VALUES (NULL,?,?,NULL,NULL,NULL,?,?)";
+            const okPacket = await conn.query(sql,Jewel_material,size,price,Jewel_name, stone,Jewel_category,Stock,Jewel_ID); // affectedRows, insertId
             conn.end();
             console.log(okPacket);
             return okPacket.insertId;
@@ -80,11 +80,11 @@ module.exports = {
             throw err; 
         }
     },
-    async editOnejewel(Jewel_ID, Jewel_material, size, price, Jewel_name, Stone, Jewel_category){ 
+    async editOnejewel(Jewel_ID, Jewel_material, size, price, Jewel_name, Stone, Jewel_category,Stock){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "UPDATE Jewels SET Jewel_material=?, size=?, price=?, Jewel_name=?, Stone=?, Jewel_category = ? WHERE Jewel_ID=? "; // TODO: named parameters? :something
-            const okPacket = await conn.query(sql,[Jewel_material, size, price, Jewel_name, Stone, Jewel_category, Jewel_ID]);
+            let sql = "UPDATE Jewels SET Jewel_material=?, size=?, price=?, Jewel_name=?, Stone=?, Jewel_category = ?, Stock = ? WHERE Jewel_ID=? "; // TODO: named parameters? :something
+            const okPacket = await conn.query(sql,[Jewel_material, size, price, Jewel_name, Stone, Jewel_category,Stock,Jewel_ID]);
             conn.end();
             console.log(okPacket);
             return okPacket.affectedRows;
