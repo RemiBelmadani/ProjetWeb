@@ -1,7 +1,5 @@
-Client.auth.js
-
 const passport = require("passport");
-const UsersRepo = require("/Users/steveitte/Desktop/L3/Advanced Web programming/Projet web/Code web projet L3/utils/Users_Repository.js");
+const UsersRepo = require("../utils/UserRepository.js");
 
 module.exports = {
   initialization(app) {
