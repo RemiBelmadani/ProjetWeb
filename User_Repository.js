@@ -1,4 +1,4 @@
-pool = require("/Users/steveitte/Desktop/L3/Advanced Web programming/Projet web/Code web projet L3/utils/MySQL.js");
+pool = require("../utils/MySQL.js");
 
 module.exports = {
   async getOneUser(Client_name) {
