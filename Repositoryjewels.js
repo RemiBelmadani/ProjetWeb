@@ -66,11 +66,11 @@ module.exports = {
         }
     },*/
 
-    async addOnejewel(ewel_material,size,price,Jewel_name, stone,Jewel_category,Jewel_ID){ 
+    async addOnejewel(Jewel_material,size,price,Jewel_name, stone,Jewel_category,Jewel_ID){ 
         try {
             let conn = await pool.getConnection();
             let sql = "INSERT INTO Jewels (Jewel_material,size,price,Jewel_name, stone,Jewel_category,Jewel_ID ) VALUES (NULL,?,?,NULL,NULL,NULL,?)";
-            const okPacket = await conn.query(sql, ewel_material,size,price,Jewel_name, stone,Jewel_category,Jewel_ID); // affectedRows, insertId
+            const okPacket = await conn.query(sql,Jewel_material,size,price,Jewel_name, stone,Jewel_category,Jewel_ID); // affectedRows, insertId
             conn.end();
             console.log(okPacket);
             return okPacket.insertId;
