@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const JewelRepo = require('/Users/steveitte/Desktop/L3/Advanced Web programming/Projet web/Code web projet L3/utils/Jewels_Repository');
+const JewelRepo = require('../utils/repositoryJewels.js');
 router.get('/', JewelRootAction);
 router.get('/list', JewelListAction);
 router.get('/show/:Jewel_ID', JewelShowAction);
-router.get('/del/:Jewel_ID', JewelDelAction);
+//router.get('/del/:Jewel_ID', JewelDelAction);
 router.get('/edit/:Jewel_ID', JewelEditAction);
 router.post('/update/:Jewel_ID', JewelUpdateAction);
 
