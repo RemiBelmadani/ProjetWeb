@@ -1,0 +1,43 @@
+<!-- views/cars_edit.ejs -->
+<!-- RECEIVES: oneCar [a single car object] + brands [array of brand objects] -->
+<%- include("partial_headers.ejs"); %>
+
+<h1>Single jewel editor form</h1>
+
+<p><a href='/Jewels/list'>Back to the list</a></p>
+<!-- body-parser ==> we cannot use multipart/form-data ==> no file uploads -->
+<form action='/Jewels/update/<%= oneJewel.Jewel_ID %>' method='post' 
+            enctype='application/x-www-form-urlencoded'>
+<table class="table table-striped table-bordered table-hover">            
+    <tr><td>Jewel name:</td>
+        <td>
+            <select name='Jewel_ID'>
+              <% for (var b of Jewel_ID) { %>
+                    <option value='<%= b.Jewel_ID %>' 
+                        <%- b.Jewel_ID==oneJewel.Jewel_ID ? "selected='selected'" : "" %>
+                    > <%= b.Jewel_ID %></option>
+              <% } %>
+            </select>
+        </td></tr>
+    <tr><td>Model:</td>
+        <td><input type='text' name='Jewel_name' value='<%= oneJewel.Jewel_name %>' /></td></tr>
+    <tr><td>Price:</td>
+        <td><input type='number' name='price' value='<%= oneJewel.price %>' /></td></tr>
+    <tr><td>Size:</td>
+        <td><input type='number' name='size' value='<%= oneJewel.size %>' /></td></tr>
+    <tr><td>Category:</td>
+        <td><input type='text' name='Jewel_category' value='<%= oneJewel.Jewel_category %>' /></td></tr>
+    <tr><td>Stock:</td>
+        <td><input type='number' name='Stock' value='<%= oneJewel.Stock %>' /></td></tr>
+        
+    
+        <!--<tr><td>Fancy?</td>
+        <td><input type='checkbox' name='car_isFancy' value='1' <%- oneCar.car_isFancy ? "checked='checked'" : "" %> /></td></tr> 
+    <tr><td>Total price:</td>
+        <td><input type='number' name='car_realPrice' value='<%= oneCar.car_realPrice %>' /></td></tr>-->
+    <tr><td colspan='2'> <input type='submit' value='SEND' /> </td></tr>
+</table>
+</form>
+
+</body>
+</html>
