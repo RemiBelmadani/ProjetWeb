@@ -7,7 +7,7 @@
     <p style='color:red'><%= flashMessage %></p>
 <% } %>
 
-<p><a href='/Jewels/edit/0'>Add a new jewel</a></p>
+<p><a href='/Jewels/edit'>Add a new jewel</a></p>
 
 <table class="table table-striped table-bordered table-hover">
     <tr>
@@ -16,14 +16,17 @@
         <td>Size</td>
         <td>Category</td>
         <td>Stock</td>
+        <td>Show</td>
         <td>Edit</td>
     </tr>
     
 <% for (var c of Jewels) { %>
     <tr>
-        <td><%= c.Jewel_ID %></td>
         <td><%= c.Jewel_name %></td>
         <td><%= c.price %></td>
+        <td><%= c.size %></td>
+        <td><%= c.Jewel_category %></td>
+        <td><%= c.Stock %></td>
         <td><a href='/Jewels/show/<%= c.Jewel_ID %>'>Show</a></td>
         <td><a href='/Jewels/edit/<%= c.Jewel_ID %>'>Edit</a></td>
         <!-- <td><a href='/jewels/del/<%= c.Jewel_ID %>'>Delete</a></td> -->
