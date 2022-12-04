@@ -61,3 +61,15 @@ app.use("/static", express.static(__dirname + '/static'));
 //app.use("/hello", require("./controllers/hello.route"));
 app.use("/Jewels", require("./controllers/jewelsControls"));
 app.use("/Users", require("./controllers/usersControllers"));
+
+app.use(express.static(__dirname + '/public'));
+app.use('/css', express.static(__dirname + 'public/css'));
+app.get('', (req, res) => {
+    res.render('home', { text: 'This is EJS'})
+});
+
+app.use(express.static('files'));
+
+app.use('/static', express.static('public'));
+app.use('/static', express.static(__dirname + '/public'));
+
