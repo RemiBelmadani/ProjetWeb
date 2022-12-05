@@ -1,4 +1,4 @@
-pool = require("../utils/MySQL.js");
+pool = require("../utils/db.js");
 // JS include = relative to CONTROLLERS 
 // VIEW include = relative to VIEWS
 module.exports = {
@@ -29,13 +29,13 @@ module.exports = {
         }
     },
 
-        async getOneCategory(Jewel_ID,Jewel_name){ 
+        async getOneCategory(Jewel_ID){ 
         try {
             let conn = await pool.getConnection();
             // sql = "SELECT * FROM cars INNER JOIN brands ON car_brand=brand_id WHERE car_id = "+carId; // SQL INJECTION => !!!!ALWAYS!!!! sanitize user input!
             // escape input OR prepared statements OR use orm
             let sql = "SELECT Jewel_ID,Jewel_name FROM Jewels WHERE Jewel_category = ?";
-            const rows = await conn.query(sql, Jewel_ID, Jewel_name);
+            const rows = await conn.query(sql, Jewel_ID);
             conn.end();
             console.log("ROWS FETCHED: "+rows.length);
             if (rows.length == 1) {
@@ -50,12 +50,30 @@ module.exports = {
         }
     },
 
-    /*Cannot delete or update a parent row
+    async getOneJewel(Jewel_ID){ 
+        try {
+            let conn = await pool.getConnection();
+            let sql = "SELECT * FROM Jewels WHERE Jewel_ID = ?";
+            const rows = await conn.query(sql, Jewel_ID);
+            conn.end();
+            console.log("ROWS FETCHED: "+rows.length);
+            if (rows.length == 1) {
+                return rows[0];
+            } else {
+                return false;
+            }
+        }
+        catch (err) {
+            console.log(err);
+            throw err; 
+        }
+    },
+
     async delOneJewel(Jewel_ID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "DELETE FROM cars WHERE Jewel_ID = ?";
-            const okPacket = await conn.query(sql, Jewel_ID); // affectedRows, insertId
+            let sql = "DELETE FROM Jewels WHERE Jewel_ID = ?";
+            const okPacket = await conn.query(sql,Jewel_ID); // affectedRows, insertId
             conn.end();
             console.log(okPacket);
             return okPacket.affectedRows;
@@ -64,13 +82,13 @@ module.exports = {
             console.log(err);
             throw err; 
         }
-    },*/
+    },
 
-    async addOnejewel(Jewel_material,size,price,Jewel_name, stone,Jewel_category,Stock,Jewel_ID){ 
+    async addOneJewel(Jewel_material,size,price,Jewel_name, stone,Jewel_category,Stock,Jewel_ID){ 
         try {
             let conn = await pool.getConnection();
             let sql = "INSERT INTO Jewels (Jewel_material,size,price,Jewel_name, stone,Jewel_category,Stock,Jewel_ID ) VALUES (NULL,?,?,NULL,NULL,NULL,?,?)";
-            const okPacket = await conn.query(sql,Jewel_material,size,price,Jewel_name, stone,Jewel_category,Stock,Jewel_ID); // affectedRows, insertId
+            const okPacket = await conn.query(sql,[Jewel_material,size,price,Jewel_name, stone,Jewel_category,Stock,Jewel_ID]); // affectedRows, insertId
             conn.end();
             console.log(okPacket);
             return okPacket.insertId;
@@ -80,7 +98,7 @@ module.exports = {
             throw err; 
         }
     },
-    async editOnejewel(Jewel_ID, Jewel_material, size, price, Jewel_name, Stone, Jewel_category,Stock){ 
+    async editOneJewel(Jewel_ID, Jewel_material, size, price, Jewel_name, Stone, Jewel_category,Stock){ 
         try {
             let conn = await pool.getConnection();
             let sql = "UPDATE Jewels SET Jewel_material=?, size=?, price=?, Jewel_name=?, Stone=?, Jewel_category = ?, Stock = ? WHERE Jewel_ID=? "; // TODO: named parameters? :something
