@@ -23,13 +23,11 @@ CREATE TABLE Jewels (
 	price float NOT NULL,
    	Jewel_name varchar (100),
 	Stone varchar (9),
-   	Jewel_category varchar(25),
-    Stock INT
-);
+   	Jewel_category varchar(25));
 
 CREATE TABLE Orders (
 	Order_ID INT auto_increment primary key,
-	Orders_product_ID INT, -- varchar(50) NOT NULL,
+	Orders_product INT, -- varchar(50) NOT NULL,
     Name_of_product varchar(50),
 	Orders_adress varchar (90) NOT NULL,
 	Orders_payment varchar(50) NOT NULL,
@@ -37,54 +35,54 @@ CREATE TABLE Orders (
 	order_date varchar(20) not null,
    	Users_ID INT NOT NULL,
 	foreign key(Users_ID) REFERENCES Users(Users_ID),
-	foreign key (Orders_product_ID) REFERENCES Jewels(Jewel_ID)
+	foreign key (Orders_product) REFERENCES Jewels(Jewel_ID)
 );
 
  INSERT INTO Jewels VALUES
 -- silver necklaces
-(1,'silver',50,50, 'Silver Necklace','no','Necklace',5),
-(2,'silver',52,50, 'Silver Necklace','no','Necklace',5),
+(1,'silver',50,50, 'Silver Necklace','no','Necklace'),
+(2,'silver',52,50, 'Silver Necklace','no','Necklace'),
 -- gold necklaces
-(3,'gold',50,60, 'Gold Necklace','no','Necklace',5),
-(4,'gold',52,60, 'Gold Necklace','no','Necklace',5),
+(3,'gold',50,60, 'Gold Necklace','no','Necklace'),
+(4,'gold',52,60, 'Gold Necklace','no','Necklace'),
 -- platinium necklaces
-(5,'platinium',50,80, 'Platinium Necklace','yes','Necklace',5),
-(6,'platinium',52,80, 'Platinium Necklace','yes','Necklace',5),
+(5,'platinium',50,80, 'Platinium Necklace','yes','Necklace'),
+(6,'platinium',52,80, 'Platinium Necklace','yes','Necklace'),
 -- biodegradable necklaces
-(7,'biodegradable',50,1000, 'Biodegradable Necklace','yes','Necklace',5),
-(8,'biodegradable',52,1000, 'Biodegradable Necklace','yes','Necklace',5),
+(7,'biodegradable',50,1000, 'Biodegradable Necklace','yes','Necklace'),
+(8,'biodegradable',52,1000, 'Biodegradable Necklace','yes','Necklace'),
 -- silver rings
-(9,'silver',50,50, 'Silver Ring','no','Ring',5),
-(10,'silver',52,50, 'Silver Ring','no','Ring',5),
+(9,'silver',50,50, 'Silver Ring','no','Ring'),
+(10,'silver',52,50, 'Silver Ring','no','Ring'),
 -- gold rings
-(11,'gold',50,60, 'Gold Ring','no','Ring',5),
-(12,'gold',52,60, 'Gold Ring','no','Ring',5),
+(11,'gold',50,60, 'Gold Ring','no','Ring'),
+(12,'gold',52,60, 'Gold Ring','no','Ring'),
 -- platinium rings
-(13,'platinium',50,80, 'Platinium Ring','yes','Ring',5),
-(14,'platinium',52,80, 'Platinium Ring','yes','Ring',5),
+(13,'platinium',50,80, 'Platinium Ring','yes','Ring'),
+(14,'platinium',52,80, 'Platinium Ring','yes','Ring'),
 -- biodegradable rings 
-(15,'biodegradable',50,2000, 'Biodegradable Ring','yes','Ring',5),
-(16,'biodegradable',52,2000, 'Biodegradable Ring','yes','Ring',5),
+(15,'biodegradable',50,2000, 'Biodegradable Ring','yes','Ring'),
+(16,'biodegradable',52,2000, 'Biodegradable Ring','yes','Ring'),
 -- silver bracelets
-(17,'silver',50,50, 'Silver Bracelet','no','Bracelet',5),
-(18,'silver',52,50, 'Silver Bracelet','no','Bracelet',5),
+(17,'silver',50,50, 'Silver Bracelet','no','Bracelet'),
+(18,'silver',52,50, 'Silver Bracelet','no','Bracelet'),
 -- gold bracelets
-(19,'gold',50,60, 'Gold Bracelet','no','Bracelet',5),
-(20,'gold',52,60, 'Gold Bracelet','no','Bracelet',5),
+(19,'gold',50,60, 'Gold Bracelet','no','Bracelet'),
+(20,'gold',52,60, 'Gold Bracelet','no','Bracelet'),
 -- platinium bracelets
-(21,'platinium',50,80, 'Platinium Bracelet','yes','Bracelet',5),
-(22,'platinium',52,80, 'Platinium Bracelet','yes','Bracelet',5),
+(21,'platinium',50,80, 'Platinium Bracelet','yes','Bracelet'),
+(22,'platinium',52,80, 'Platinium Bracelet','yes','Bracelet'),
 -- biodegradable bracelets
-(23,'biodegradable',50,3000, 'Biodegradable Bracelet','yes','Bracelet',5),
-(24,'biodegradable',52,3000, 'Biodegradable Bracelet','yes','Bracelet',5),
+(23,'biodegradable',50,3000, 'Biodegradable Bracelet','yes','Bracelet'),
+(24,'biodegradable',52,3000, 'Biodegradable Bracelet','yes','Bracelet'),
 -- silver earrings
-(25,'silver',0,50, 'Silver Earring','no','Earring',5),
+(25,'silver',0,50, 'Silver Earring','no','Earring'),
 -- gold earrings
-(26,'gold',0,60, 'Gold Earring','no','Earring',5),
+(26,'gold',0,60, 'Gold Earring','no','Earring'),
 -- platinium earrings
-(27,'platinium',0,80, 'Platinium Earring','yes','Earring',5),
+(27,'platinium',0,80, 'Platinium Earring','yes','Earring'),
 -- biodegradable earrings
-(28,'biodegradable',0,100, 'Biodegradable Earring','yes','Earring',5);
+(28,'biodegradable',0,100, 'Biodegradable Earring','yes','Earring');
  
 INSERT INTO Users VALUES
 
@@ -127,14 +125,9 @@ SELECT Jewel_ID,Jewel_name FROM Jewels where Stone = "yes";
 SELECT Jewel_ID,Jewel_name FROM Jewels where Stone = "no";
 SELECT Jewel_ID,Jewel_name, Jewel_category FROM Jewels where size = 50;
 SELECT Jewel_ID,Jewel_name FROM Jewels where Jewel_category = 'Necklace';
-select * from Jewels;
-INSERT INTO Jewels (Jewel_material,size,price,Jewel_name, stone,Jewel_category,Stock,Jewel_ID ) VALUES ("NULL",0,0,"NULL","NULL","NULL",0,0);
-UPDATE Jewels SET Jewel_material="Diamond", size=15, price=35, Jewel_name="gros cadeaux", Stone="yes", Jewel_category = "Neck",Stock = 5 WHERE Jewel_ID=29;
-DELETE FROM Jewels WHERE Jewel_ID = 28; */
-
-UPDATE Jewels SET Stock = Stock - 1 WHERE Jewel_ID=28;
-
-Select * FROM Jewels;
+INSERT INTO Jewels (Jewel_material,size,price,Jewel_name, stone,Jewel_category,Jewel_ID ) VALUES ("NULL",0,0,"NULL","NULL","NULL",null);
+UPDATE Jewels SET Jewel_material="Silver", size=15, price=35, Jewel_name="Chocolat", Stone="yes", Jewel_category = "neck" WHERE Jewel_ID=28;
+select * from Jewels;*/
 
 
 /*Select * FROM Orders;
@@ -143,7 +136,7 @@ DELETE FROM Orders WHERE Order_ID = 2;
 Select * FROM Orders;
 INSERT INTO Orders (Orders_product_ID,Name_of_product,Orders_adress,Orders_payment,Number_of_product,order_date,Client_ID,Order_ID) VALUES (NULL,NULL,"NULL","NULL",0,'0/0/0000',9,null);
 UPDATE Orders SET Orders_product_ID= 17, Name_of_product = 'Silver Bracelet',Orders_adress='1 Rue de Napoléon', Orders_payment='Carte', Number_of_product= 1 , order_date= '1/1/2023',Client_ID= 9 WHERE Order_ID= 15;
-*/
+Select * FROM Orders;*/
 
 -- select * From Users;
 -- SELECT * FROM Users WHERE Users_ID = 5;
