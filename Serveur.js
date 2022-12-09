@@ -21,7 +21,19 @@ conn.then(function(conn) {
     conn.execute('SELECT * FROM Users').then(function(result){ const [rows, fields]=result; console.log(rows); process.exit(); });
 });
 return;
-*/
+
+
+const mariadb = require('mariadb');
+const pool = mariadb.createPool({
+    host:'localhost', user: 'root', database: 'Jewelry', password: '30Mars2002', debug: false
+});
+pool.getConnection().then(function(conn) {
+    conn.query('SELECT * FROM Jewels').then(function(rows){ console.log(rows) });
+    conn.query('SELECT * FROM Orders').then(function(rows){ console.log(rows); process.exit(); });
+    conn.query('SELECT * FROM Users').then(function(result){ console.log(rows); process.exit(); });
+});
+return;*/
+
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -34,10 +46,14 @@ app.listen(process.env.WEB_PORT, '0.0.0.0',
     function() { console.log("Listening on "+process.env.WEB_PORT); }
 );
 
-app.get('/', (request, response) => { // 'GET' as a HTTP VERB, not as a 'getter'!
-    let clientIp = request.ip;
-    response.send('Hello, dear ${clientIp}. I am a nodejs website...');
-    response.end(); // optional
+app.get('/home', (request, response) => {
+    response.render('home')
+});
+
+path = require("path");
+app.use(express.static(path.join(__dirname, "public")));
+app.get('/bracelets', (request, response) => {
+    response.render('bracelets.ejs')
 });
 
 // MIDDLEWARE REGISTRATIONS
@@ -61,15 +77,33 @@ app.use("/static", express.static(__dirname + '/static'));
 //app.use("/hello", require("./controllers/hello.route"));
 app.use("/Jewels", require("./controllers/jewelsControls"));
 app.use("/Users", require("./controllers/usersControllers"));
+app.use("/Images", require("./controllers/jewelsControls"));
+
 
 app.use(express.static(__dirname + '/public'));
 app.use('/css', express.static(__dirname + 'public/css'));
-app.get('', (req, res) => {
-    res.render('home', { text: 'This is EJS'})
-});
+
 
 app.use(express.static('files'));
 
 app.use('/static', express.static('public'));
 app.use('/static', express.static(__dirname + '/public'));
 
+
+app.use(express.static('files'));
+app.use(express.static(__dirname + '/public'));
+app.use('/css', express.static(__dirname + 'public'));
+app.use('/static', express.static('public'));
+app.use('/static', express.static(__dirname + '/public'));
+app.use(express.static('files'));
+app.get('', (req, res) => {
+    res.render('home')
+});
+
+app.get('/about', (req, res) => {
+    res.render(__dirname + '/views/about.ejs')
+ });
+
+ app.get('/association', (req, res) => {
+    res.render(__dirname + '/views/association.ejs')
+ })
