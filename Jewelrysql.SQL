@@ -7,12 +7,12 @@ DROP TABLE if exists Jewels;
 
 CREATE TABLE Users ( 
 	Users_ID INT auto_increment primary key,
-    Users_created datetime,
+    	Users_created datetime,
 	Users_name varchar(20) NOT NULL,
 	Users_mail varchar(50) NOT NULL,
 	Users_phone varchar(40) NOT NULL,
 	Users_address varchar(50) NOT NULL,
-    Users_role varchar(20) NOT NULL,
+    	Users_role varchar(20) NOT NULL,
 	Users_passwords varchar(200) NOT NULL
 );
 
@@ -20,10 +20,13 @@ CREATE TABLE Jewels (
 	Jewel_ID INT auto_increment primary key,
 	Jewel_material varchar (20),
    	size int,
-	price float NOT NULL,
+	price float ,
    	Jewel_name varchar (100),
 	Stone varchar (9),
-   	Jewel_category varchar(25));
+   	Jewel_category varchar(25),
+	Stock int,
+	Images varchar(80)
+    );
 
 CREATE TABLE Orders (
 	Order_ID INT auto_increment primary key,
@@ -40,49 +43,49 @@ CREATE TABLE Orders (
 
  INSERT INTO Jewels VALUES
 -- silver necklaces
-(1,'silver',50,50, 'Silver Necklace','no','Necklace'),
-(2,'silver',52,50, 'Silver Necklace','no','Necklace'),
+(1,'silver',50,50, 'Silver Necklace','no','Necklace',5,'SilverNecklace.png'),
+(2,'silver',52,50, 'Silver Necklace','no','Necklace',5,'SilverNecklace.png'),
 -- gold necklaces
-(3,'gold',50,60, 'Gold Necklace','no','Necklace'),
-(4,'gold',52,60, 'Gold Necklace','no','Necklace'),
+(3,'gold',50,60, 'Gold Necklace','no','Necklace',5,'GoldNecklace.png'),
+(4,'gold',52,60, 'Gold Necklace','no','Necklace',5,'GoldNecklace.png'),
 -- platinium necklaces
-(5,'platinium',50,80, 'Platinium Necklace','yes','Necklace'),
-(6,'platinium',52,80, 'Platinium Necklace','yes','Necklace'),
+(5,'platinium',50,80, 'Platinium Necklace','yes','Necklace',5,'PlatiniumNecklace.jpg'),
+(6,'platinium',52,80, 'Platinium Necklace','yes','Necklace',5,'PlatiniumNecklace.jpg'),
 -- biodegradable necklaces
-(7,'biodegradable',50,1000, 'Biodegradable Necklace','yes','Necklace'),
-(8,'biodegradable',52,1000, 'Biodegradable Necklace','yes','Necklace'),
+(7,'biodegradable',50,1000, 'Biodegradable Necklace','yes','Necklace',5,'BiodegradableNecklace.jpg'),
+(8,'biodegradable',52,1000, 'Biodegradable Necklace','yes','Necklace',5,'BiodegradableNecklace.jpg'),
 -- silver rings
-(9,'silver',50,50, 'Silver Ring','no','Ring'),
-(10,'silver',52,50, 'Silver Ring','no','Ring'),
+(9,'silver',50,50, 'Silver Ring','no','Ring',5,'SilverRing.png'),
+(10,'silver',52,50, 'Silver Ring','no','Ring',5,'SilverRing.png'),
 -- gold rings
-(11,'gold',50,60, 'Gold Ring','no','Ring'),
-(12,'gold',52,60, 'Gold Ring','no','Ring'),
+(11,'gold',50,60, 'Gold Ring','no','Ring',5,'GoldRing.png'),
+(12,'gold',52,60, 'Gold Ring','no','Ring',5,'GoldRing.png'),
 -- platinium rings
-(13,'platinium',50,80, 'Platinium Ring','yes','Ring'),
-(14,'platinium',52,80, 'Platinium Ring','yes','Ring'),
+(13,'platinium',50,80, 'Platinium Ring','yes','Ring',5,'PlatiniumRing.jpg'),
+(14,'platinium',52,80, 'Platinium Ring','yes','Ring',5,'PlatiniumRing.jpg'),
 -- biodegradable rings 
-(15,'biodegradable',50,2000, 'Biodegradable Ring','yes','Ring'),
-(16,'biodegradable',52,2000, 'Biodegradable Ring','yes','Ring'),
+(15,'biodegradable',50,2000, 'Biodegradable Ring','yes','Ring',5,'BiodegradableRing.jpg'),
+(16,'biodegradable',52,2000, 'Biodegradable Ring','yes','Ring',5,'BiodegradableRing.jpg'),
 -- silver bracelets
-(17,'silver',50,50, 'Silver Bracelet','no','Bracelet'),
-(18,'silver',52,50, 'Silver Bracelet','no','Bracelet'),
+(17,'silver',50,50, 'Silver Bracelet','no','Bracelet',5,'SilverBracelet.png'),
+(18,'silver',52,50, 'Silver Bracelet','no','Bracelet',5,'SilverBracelet.png'),
 -- gold bracelets
-(19,'gold',50,60, 'Gold Bracelet','no','Bracelet'),
-(20,'gold',52,60, 'Gold Bracelet','no','Bracelet'),
+(19,'gold',50,60, 'Gold Bracelet','no','Bracelet',5,'GoldBracelet.png'),
+(20,'gold',52,60, 'Gold Bracelet','no','Bracelet',5,'GoldBracelet.png'),
 -- platinium bracelets
-(21,'platinium',50,80, 'Platinium Bracelet','yes','Bracelet'),
-(22,'platinium',52,80, 'Platinium Bracelet','yes','Bracelet'),
+(21,'platinium',50,80, 'Platinium Bracelet','yes','Bracelet',5,'PlatiniumBracelet.jpg'),
+(22,'platinium',52,80, 'Platinium Bracelet','yes','Bracelet',5,'PlatiniumBracelet.jpg'),
 -- biodegradable bracelets
-(23,'biodegradable',50,3000, 'Biodegradable Bracelet','yes','Bracelet'),
-(24,'biodegradable',52,3000, 'Biodegradable Bracelet','yes','Bracelet'),
+(23,'biodegradable',50,3000, 'Biodegradable Bracelet','yes','Bracelet',5,'BiodegradableBracelet.jpg'),
+(24,'biodegradable',52,3000, 'Biodegradable Bracelet','yes','Bracelet',5,'BiodegradableBracelet.jpg'),
 -- silver earrings
-(25,'silver',0,50, 'Silver Earring','no','Earring'),
+(25,'silver',0,50, 'Silver Earring','no','Earring',5,'SilverEarring.png'),
 -- gold earrings
-(26,'gold',0,60, 'Gold Earring','no','Earring'),
+(26,'gold',0,60, 'Gold Earring','no','Earring',5,'GoldEarring.jpg'),
 -- platinium earrings
-(27,'platinium',0,80, 'Platinium Earring','yes','Earring'),
+(27,'platinium',0,80, 'Platinium Earring','yes','Earring',5,'PlatiniumEarring.jpg'),
 -- biodegradable earrings
-(28,'biodegradable',0,100, 'Biodegradable Earring','yes','Earring');
+(28,'biodegradable',0,100, 'Biodegradable Earring','yes','Earring',5,'BiodegradableEarring.jpg');
  
 INSERT INTO Users VALUES
 
@@ -127,7 +130,7 @@ SELECT Jewel_ID,Jewel_name, Jewel_category FROM Jewels where size = 50;
 SELECT Jewel_ID,Jewel_name FROM Jewels where Jewel_category = 'Necklace';
 INSERT INTO Jewels (Jewel_material,size,price,Jewel_name, stone,Jewel_category,Jewel_ID ) VALUES ("NULL",0,0,"NULL","NULL","NULL",null);
 UPDATE Jewels SET Jewel_material="Silver", size=15, price=35, Jewel_name="Chocolat", Stone="yes", Jewel_category = "neck" WHERE Jewel_ID=28;
-select * from Jewels;*/
+select * from Jewels;
 
 
 /*Select * FROM Orders;
@@ -139,4 +142,4 @@ UPDATE Orders SET Orders_product_ID= 17, Name_of_product = 'Silver Bracelet',Ord
 Select * FROM Orders;*/
 
 -- select * From Users;
--- SELECT * FROM Users WHERE Users_ID = 5;
+-- SELECT * FROM Users WHERE Users_ID = 5;*/
