@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const auth = require("../utils/UsersAuth.js");
+const auth = require("../utils/usersAuth.js");
 const UsersRepo = require("../utils/userRepository.js");
 
 router.get('/', (req, res) => res.render('auth_view', { extraContent: "" }) );
