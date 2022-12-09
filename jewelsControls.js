@@ -3,6 +3,7 @@ const router = express.Router();
 const JewelRepo = require('../utils/repositoryJewels');
 router.get('/', JewelRootAction);
 router.get('/list', JewelListAction);
+//router.get('/Images', BraceletJewel);
 router.get('/show/:Jewel_ID', JewelShowAction);
 router.get('/del/:Jewel_ID', JewelDelAction);
 router.get('/edit/:Jewel_ID', JewelEditAction);
@@ -20,10 +21,21 @@ async function JewelListAction(request, response) {
     request.session.flashMessage = "";
     response.render("jewel_list", { "Jewels": Jewels, "flashMessage": flashMessage });
 }
+
+async function BraceletJewel(request, response) {
+    // response.send("LIST ACTION");
+    let Bracelet = await JewelRepo.getAllBracelets(); 
+    console.log(Bracelet);
+    var flashMessage = request.session.flashMessage;
+    request.session.flashMessage = "";
+    response.render("Images", { "Bracelet": Bracelet, "flashMessage": flashMessage });
+}
+
+
 async function JewelShowAction(request, response) {
     // response.send("SHOW ACTION");
-    var OneJewel = await JewelRepo.getOneJewel(request.params.Jewel_ID);
-    response.render("Jewel_show", { "Jewel": OneJewel });
+    var Jewel = await JewelRepo.getOneJewel(request.params.Jewel_ID);
+    response.render("Jewel_show", { "OneJewel": Jewel });
 }
 async function JewelEditAction(request, response) {
     // response.send("EDIT ACTION");
@@ -33,7 +45,7 @@ async function JewelEditAction(request, response) {
         var jewel = await JewelRepo.getOneJewel(Jewel_id);
     else
         var jewel = JewelRepo.getBlankJewels();
-    response.render("Jewel_edit", { "Jewel":jewel,"name":OneJewel });
+    response.render("Jewel_edit", { "OneJewel":jewel,"Name":OneJewel });
 }
 async function JewelDelAction(request, response) {
     // response.send("DEL ACTION");
@@ -47,7 +59,6 @@ async function JewelUpdateAction(request, response) {
     // response.send("UPDATE ACTION");
     var Jewel_ID = request.params.Jewel_ID;
     if (Jewel_ID==="0") Jewel_ID = await JewelRepo.addOneJewel(request.body.Jewel_name);
-    // var isFancy = request.body.car_isFancy === undefined ? 0 : 1; 
     var numRows = await JewelRepo.editOneJewel(
     	Jewel_ID, 
         request.body.Jewel_material, 
