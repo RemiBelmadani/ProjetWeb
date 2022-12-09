@@ -11,14 +11,14 @@ router.post("/login", loginPostAction);
 router.get("/logout", logoutAction);
 
 async function UsersAction(request, response) {
-  let UsersData = await UsersRepo.getOneUser(request.Users.Users_name);
+  let UsersData = await UsersRepo.getOneUser(request.user.Users_name);
   let UsersJson = JSON.stringify(UsersData);
   response.render("auth_view", { "extraContent": UsersJson });
 }
 
 async function protectedGetAction(request, response) {
   if (request.isAuthenticated()) {
-    if (request.Users.Users_role === "ADMIN") {
+    if (request.user.Users_role === "ADMIN") {
       response.redirect("/auth/admin");
     } else {
       response.redirect("/auth/Users");
@@ -32,11 +32,11 @@ async function loginPostAction(request, response) {
   areValid = await UsersRepo.areValidCredentials(request.body.Users_name, request.body.Users_passwords);
 
   if (areValid) {
-    Users = await UsersRepo.getOneUsers(request.body.Users_name);
-    request.login(Users, function (err) { 
+    user = await UsersRepo.getOneUser(request.body.Users_name);
+    request.login(user, function (err) { 
         if (err) { console.log("ERROR"); console.log(err); return next(err); }
 
-        if (request.Users.Users_role === "ADMIN") {
+        if (request.user.Users_role === "ADMIN") {
             return response.redirect("/auth/admin");
         } else {
             return response.redirect("/auth/Users");
