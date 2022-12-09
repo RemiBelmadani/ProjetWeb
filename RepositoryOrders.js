@@ -1,4 +1,4 @@
-pool = require("../utils/MySQL.js");
+pool = require("../utils/db.js");
 // JS include = relative to CONTROLLERS 
 // VIEW include = relative to VIEWS
 module.exports = {
