@@ -1,7 +1,7 @@
-pool = require("../utils/MySQL.js");
+pool = require("../utils/db.js");
 
 module.exports = {
-  async getOneUser(Client_name) {
+  async getOneUser(Users_name) {
     try {
       let conn = await pool.getConnection();
       let sql = "SELECT Users_ID, Users_name,Users_mail,Users_phone,Users_address,Users_role, FROM Users WHERE Users_ID = ?,"; // must leave out the password+hash
