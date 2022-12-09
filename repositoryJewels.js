@@ -11,7 +11,7 @@ module.exports = {
             "Jewel_name": "XXXX",
             "Stone": "XXXX",
             "Jewel_category": "XXXX",
-            "Stock" : 0
+            "Stock" : 0 
         };
     },
     async getAllJewels(){ // TODO? move to brands.repository.js
@@ -28,7 +28,21 @@ module.exports = {
             throw err; // return false ???
         }
     },
-
+    async getAllBracelets(){ // TODO? move to brands.repository.js
+        try {
+            let conn = await pool.getConnection();
+            let sql = "SELECT * FROM Jewels WHERE Jewel_category = Bracelet";
+            console.log(sql);
+            const rows = await conn.query(sql);
+            conn.end();
+            return rows;
+        }
+        catch (err) {
+            // TODO: log/send error ... 
+            console.log(err);
+            throw err; // return false ???
+        }
+    },
         async getOneCategory(Jewel_ID){ 
         try {
             let conn = await pool.getConnection();
@@ -84,11 +98,11 @@ module.exports = {
         }
     },
 
-    async addOneJewel(Jewel_material,size,price,Jewel_name, stone,Jewel_category,Stock,Jewel_ID){ 
+    async addOneJewel(Jewel_ID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO Jewels (Jewel_material,size,price,Jewel_name, stone,Jewel_category,Stock,Jewel_ID ) VALUES (NULL,?,?,NULL,NULL,NULL,?,?)";
-            const okPacket = await conn.query(sql,[Jewel_material,size,price,Jewel_name, stone,Jewel_category,Stock,Jewel_ID]); // affectedRows, insertId
+            let sql = "INSERT INTO Jewels (Jewel_ID,Jewel_name) VALUES (NULL,?)";
+            const okPacket = await conn.query(sql,Jewel_ID); // affectedRows, insertId
             conn.end();
             console.log(okPacket);
             return okPacket.insertId;
