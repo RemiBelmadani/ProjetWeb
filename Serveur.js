@@ -1,7 +1,7 @@
 /*
 mkdir controllers models views
 npm init -y
-npm install express express-session body-parser passport dotenv ejs
+npm install mariadb express express-session body-parser passport dotenv ejs mysql2 cors
 >> https://www.npmjs.com/package/body-parser
 edit/copy files, then ... node server.js 
 */
@@ -74,10 +74,10 @@ auth.initialization(app);
 
 // app.use(routeBase, callback);
 app.use("/static", express.static(__dirname + '/static'));
-//app.use("/hello", require("./controllers/hello.route"));
 app.use("/Jewels", require("./controllers/jewelsControls"));
 app.use("/Users", require("./controllers/usersControllers"));
 app.use("/Images", require("./controllers/jewelsControls"));
+app.use("/auth",require("./controllers/usersControllers"));
 
 
 app.use(express.static(__dirname + '/public'));
